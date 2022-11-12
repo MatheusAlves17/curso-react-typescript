@@ -35,6 +35,7 @@ export const Login = () => {
           type="password"
           value={password}
           onChange={newValue => setPassword(newValue)}
+          ref={inputPasswordRef}
         />
       </form>
       <button onClick={handleEntrar} type="button">

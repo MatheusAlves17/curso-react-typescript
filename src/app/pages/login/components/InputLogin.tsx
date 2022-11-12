@@ -1,3 +1,4 @@
+import React from 'react'
 interface IInputLoginProps{
     id: string;
     label: string;
@@ -7,11 +8,13 @@ interface IInputLoginProps{
     onChange: (NewValue: string) => void;
 
 }
-export const InputLogin: React.FC<IInputLoginProps> = (props) => {
+export const InputLogin = React.forwardRef<HTMLInputElement, IInputLoginProps>((props, ref) => {
     return (
         <>
         <label htmlFor="email">{props.label}</label>
         <input
+            ref={ref}
+            id={props.id}
           type={props.type}
           name=""
           value={props.value}
@@ -20,9 +23,8 @@ export const InputLogin: React.FC<IInputLoginProps> = (props) => {
             e.key === "Enter"
             ? props.onPressEnter && props.onPressEnter()
             : undefined
-          }
-          id={props.id}
+        }
         />
         </>
     )
-}
+})
