@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useRef, useState } from "react";
+import { InputLogin } from "./components/InputLogin";
 
 export const Login = () => {
   const inputPasswordRef = useRef<HTMLInputElement>(null);
@@ -19,26 +20,21 @@ export const Login = () => {
       <p>Qtda email: {emailLength} </p>
       <h1>Login</h1>
       <form action="">
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name=""
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          onKeyDown={(e) =>
-            e.key === "Enter" ? inputPasswordRef.current?.focus() : undefined
-          }
+        <InputLogin
           id="email"
-        />
+          label="Email"
+          type="email"
+          value={email}
+          onChange={newValue => setEmail(newValue)}
+          onPressEnter={() => inputPasswordRef.current?.focus()}
 
-        <label htmlFor="password">Senha</label>
-        <input
+        />
+        <InputLogin
+          id="Password"
+          label="Senha"
           type="password"
-          name=""
-          ref={inputPasswordRef}
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          id="password"
+          onChange={newValue => setPassword(newValue)}
         />
       </form>
       <button onClick={handleEntrar} type="button">
